@@ -228,9 +228,8 @@ public class Bill {
 			} 
 			
 			// Prepare the HTML table to be displayed
-				
-			output = "<table border='1'><tr><th>Electricity Account Number</th><th>Month</th><th>Current Meter Reading</th><th>Previous Meter Reading</th><th>Consumed Units</th><th>Bill Amount</th>" +
-					"<th>Update</th><th>Remove</th></tr>"; 
+			output = "<table border='1'><tr><th>Electricity Account Number</th><th>Month</th><th>Current Meter Reading</th><th>Previous Meter Reading</th><th>Previous Meter Reading</th><th>Consumed Units</th><th>Bill Amount</th>"+"<th>Update</th><th>Remove</th></tr>";
+		 
 	 
 			String query = "select * from e_bill";
 			
@@ -251,7 +250,7 @@ public class Bill {
 		 
 				
 				// Add into the HTML table
-				output += "<tr><td>" + elec_acc_no + "</td>"; 
+				output += "<tr><td><input id='hidBillIDUpdate'name='hidBillIDUpdate'type='hidden' value='" + bill_id+ "'>" + elec_acc_no + "</td>";
 				output += "<td>" + month + "</td>"; 
 				output += "<td>" + current_meter_reading + "</td>"; 
 				output += "<td>" + previous_meter_reading + "</td>"; 
@@ -259,11 +258,7 @@ public class Bill {
 				output += "<td>" + bill_amount + "</td>"; 
 				
 				// buttons
-				output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
-						+ "<td><form method='post' action='units.jsp'>"
-						+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-						+ "<input name='bill_id' type='hidden' value='" + bill_id 
-						+ "'>" + "</form></td></tr>"; 
+				output += "<td><input name='btnUpdate'type='button' value='Update'class='btnUpdate btn btn-secondary'></td>"+ "<td><input name='btnRemove'type='button' value='Remove'class='btnRemove btn btn-danger'data-itemid='"+ bill_id + "'>" + "</td></tr>";
 			} 
 				
 			con.close(); 

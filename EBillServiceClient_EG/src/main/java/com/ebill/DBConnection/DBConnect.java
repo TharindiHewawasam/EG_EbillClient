@@ -8,9 +8,10 @@ public class DBConnect {
 		Connection con = null;
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
+			 
 			con = DriverManager.getConnection(
-					"jdbc:mysql://127.0.0.1:3306/electricity_bill?useTimezone=true&serverTimezone=UTC", "root", "");
+					"jdbc:mysql://127.0.0.1:3306/electricity_bill", "root", "");
 			
 		} catch (Exception e) {
 			
