@@ -25,7 +25,7 @@ $(document).on("click", "#btnSave", function(event)
 	// If valid-------------------------
  	var type = ($("#hidBillIDSave").val() == "") ? "POST" : "PUT";
 
- 		$.ajax(
+ 	$.ajax(
  	{
  		url : "BillsAPI",
  		type : type,
@@ -47,7 +47,7 @@ $(document).on("click", "#btnSave", function(event)
 			 {
  				$("#alertSuccess").text("Successfully saved.");
  				$("#alertSuccess").show();
- 				$("#divItemsGrid").html(resultSet.data);
+ 				$("#divBillsGrid").html(resultSet.data);
  			 } 
  			 else if (resultSet.status.trim() == "error")
 			 {
@@ -79,7 +79,7 @@ $(document).on("click", "#btnSave", function(event)
  		 $("#previous_meter_reading").val($(this).closest("tr").find('td:eq(3)').text());
 	});
 	
-	
+//REMOVE============================================	
 	$(document).on("click", ".btnRemove", function(event)
 	{
  		$.ajax(

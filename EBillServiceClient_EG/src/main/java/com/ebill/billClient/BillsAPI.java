@@ -87,10 +87,12 @@ public class BillsAPI extends HttpServlet {
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+			 throws ServletException, IOException
+	{
 		Map paras = getParasMap(request);
 		String output = billObj.deleteBill(paras.get("bill_id").toString());
 		response.getWriter().write(output);
 	}
-
+	
 }

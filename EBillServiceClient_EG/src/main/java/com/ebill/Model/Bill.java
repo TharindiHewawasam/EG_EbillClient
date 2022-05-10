@@ -142,14 +142,14 @@ public class Bill {
 			
 			// execute the statement
 			preparedStmt.execute(); 
-			
-			con.close(); 
-			output = "Bill Details Inserted successfully"; 
+			con.close();
+			String newBills =readBills();
+			output = "{\"status\":\"success\", \"data\": \"" +newBills + "\"}";
 		} 
 		catch (Exception e) 
 		{ 
-			output = "Error while inserting the bill details."; 
-			System.err.println(e.getMessage()); 
+			output = "{\"status\":\"error\", \"data\":\"Error while inserting the bill.\"}";
+			System.err.println(e.getMessage());
 		} 
 		return output; 
 	 }
@@ -228,7 +228,7 @@ public class Bill {
 			} 
 			
 			// Prepare the HTML table to be displayed
-			output = "<table border='1'><tr><th>Electricity Account Number</th><th>Month</th><th>Current Meter Reading</th><th>Previous Meter Reading</th><th>Previous Meter Reading</th><th>Consumed Units</th><th>Bill Amount</th>"+"<th>Update</th><th>Remove</th></tr>";
+			output = "<table border='1'><tr><th>Electricity Account Number</th><th>Month</th><th>Current Meter Reading</th><th>Previous Meter Reading</th><th>Consumed Units</th>"+"<th>Bill Amount</th><th>Update</th><th>Remove</th></tr>";
 		 
 	 
 			String query = "select * from e_bill";
@@ -258,7 +258,10 @@ public class Bill {
 				output += "<td>" + bill_amount + "</td>"; 
 				
 				// buttons
-				output += "<td><input name='btnUpdate'type='button' value='Update'class='btnUpdate btn btn-secondary'></td>"+ "<td><input name='btnRemove'type='button' value='Remove'class='btnRemove btn btn-danger'data-itemid='"+ bill_id + "'>" + "</td></tr>";
+				output += "<td><input name='btnUpdate' type='button' value='Update' "
+						+ "class='btnUpdate btn btn-secondary' data-bill_id='" + bill_id + "'></td>"
+						+ "<td><input name='btnRemove' type='button' value='Remove' "
+						+ "class='btnRemove btn btn-danger' data-bill_id='" + bill_id + "'></td></tr>";
 			} 
 				
 			con.close(); 
@@ -382,8 +385,6 @@ public class Bill {
 		        	bill_amount = charge_upto_60 +charge_60_to_120+ charge_120_to_180 +charge_180_upto_current;
 		        	
 		        }
-			
-			 
 			 
 			 
 			 // create a prepared statement
@@ -403,12 +404,15 @@ public class Bill {
 			 preparedStmt.execute(); 
 		 
 			 con.close(); 
-			 output = "Updated successfully"; 
+			 
+			 String newBills = readBills();
+			 output = "{\"status\":\"success\", \"data\": \"" +
+			 newBills + "\"}";
 		 } 
 		 catch (Exception e) 
 		 { 
-			 output = "Error while updating the bills."; 
-			 System.err.println(e.getMessage()); 
+			 output = "{\"status\":\"error\", \"data\": \"Error while updating the bill.\"}";
+			 System.err.println(e.getMessage());
 		 } 
 		 
 		 return output; 
@@ -435,13 +439,14 @@ public class Bill {
 			
 			// execute the statement
 			preparedStmt.execute(); 
-			
 			con.close(); 
-			output = "Deleted successfully"; 
+			String newBills = readBills();
+			output = "{\"status\":\"success\", \"data\": \"" +
+			newBills + "\"}";
 	 } 
 	 catch (Exception e) 
 	 { 
-		 output = "Error while deleting the bill details."; 
+		 output = "{\"status\":\"error\", \"data\": \"Error while deleting the bill.\"}";
 		 System.err.println(e.getMessage()); 
 	 }
 		
